@@ -13,22 +13,31 @@ export const authOptions: NextAuthOptions = {
         password: { label: "Password", type: "password" },
       },
       async authorize(credentials) {
-        // ✅ THIS IS WHERE THE "// inside authOptions" CODE GOES
-        // Connect to MongoDB
+        if (!credentials?.email || !credentials?.password) {
+          console.log("❌ Missing credentials");
+          return null;
+        }
+
         await connectDB();
 
-        // Find the user
-        const user = await User.findOne({ email: credentials?.email });
-        if (!user) return null;
+        const user = await User.findOne({ email: credentials.email });
+        if (!user) {
+          console.log("❌ User not found");
+          return null;
+        }
 
-        // Check password
         const isPasswordValid = await bcrypt.compare(
-          credentials!.password,
+          credentials.password,
           user.password
         );
-        if (!isPasswordValid) return null;
 
-        // Return user object if valid
+        if (!isPasswordValid) {
+          console.log("❌ Invalid password");
+          return null;
+        }
+
+        console.log("✅ Login successful for", user.email);
+
         return {
           id: user._id.toString(),
           name: user.name,
