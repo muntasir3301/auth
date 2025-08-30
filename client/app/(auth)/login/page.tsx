@@ -6,7 +6,7 @@ import { useRef, useState } from "react";
 import Link from "next/link";
 import { signOut } from "next-auth/react";
 
-
+// mongodb+srv://test:ilJEMvZqCLscVjrM@cluster0.whohm.mongodb.net/test?retryWrites=true&w=majority"
 import { signIn } from "next-auth/react";
 
 
@@ -144,7 +144,7 @@ export default function Login() {
             <div style={{ marginTop: "15px" }}>
               <button
                 type="submit"
-                className="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-orange-500 focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-primary"
+                className="flex w-full justify-center rounded-md bg-primary px-3 py-1.5 text-sm font-semibold leading-6 text-black shadow-sm hover:bg-orange-500 cursor-pointer focus-visible:outline focus-visible:outline-offset-2 focus-visible:outline-primary"
               >
                 {loading ? (
                     <span className="flex items-center justify-center">

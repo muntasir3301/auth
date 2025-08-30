@@ -4,7 +4,6 @@ import Link from "next/link";
 
 const NavMenuLinks = () => {
   const { data: session, status } = useSession();
-  console.log("Hello")
 
   const pages = [
     { name: "Home", link: "/" },
